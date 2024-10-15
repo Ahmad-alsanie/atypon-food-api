@@ -16,6 +16,7 @@ Detailed steps to get your development environment running:
 - Java JDK 17 or higher
 - Maven
 - Docker
+- API Key [API docs](https://spoonacular.com/food-api/docs#Authentication)
 
 #### Clone the Repository
 ```shell
@@ -27,6 +28,14 @@ cd atypon-food-api
 #### Build & Run the Service
 ```shell
 mvn clean install
+```
+
+setup your API KEY
+
+```yaml
+spoonacular:
+  base-url: https://api.spoonacular.com
+  api-key: ${API_KEY} # Set API key via environment variables
 ```
 
 ```shell

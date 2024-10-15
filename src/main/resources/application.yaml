@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: atypon-food-api
+
+spoonacular:
+  base-url: https://api.spoonacular.com
+  api-key: 8c0252334a2440659c49a425423dc0f3 # Set API key via environment variables
+  ## For secure API KEY usage you can use Vault, aws secrete manager or k8s config map to manage secrets
+
+## Documentation
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html  # Default Swagger UI path
+
+
+## for testing purposes, should be removed in prod
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          client:
+            RestTemplate: DEBUG

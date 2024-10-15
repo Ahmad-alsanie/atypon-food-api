@@ -5,7 +5,7 @@ a comprehensive set of endpoints focused on recipes, food products, nutrition da
 - [Setup & Run Instructions](#Setup-&-Run-Instructions)
 - [API documentation](#API-Documentation)
 - [Architecture](#Architecture)
-- [Design Decisions](#Design-Decisions)
+- [Design Decisions](#Choice-of-technology)
 - [Future Improvements](#Future-Improvements)
 
 ### Setup & Run Instructions
@@ -70,19 +70,19 @@ Key components of our service:
 - Tests: we have both unit tests and integration tests covering all edge cases and providing assurance with >80% coverage
 
 ### End points in plain english
-Search Recipes: Query recipes using parameters like name and cuisine.
-Recipe Information: Provide details about a specific recipe including total calories.
-Customized Calorie Information: Calculate calories by excluding specific ingredients.
+- Search Recipes: Query recipes using parameters like name and cuisine.
 
-#### Choice of Technology
+- Recipe Information: Provide details about a specific recipe including total calories.
+
+- Customized Calorie Information: Calculate calories by excluding specific ingredients.
+
+### Choice of Technology
 - Spring Boot for rapid development features and simplifies the creation of stand-alone, production ready microservices with its autoconfigured components & IOC container.
 - API Client: RestTemplate (for calling Spoonacular APIs)
 - Tests: JUnit, Mockito for unit and integration tests >80% coverage
 - Docker for containerization allowing us to package and run our application in a loosely isolated environment
 
 ### Future Improvements
-**Lessons Learned**
-
 API limits were a challenge during development, so caching strategies might help in production.
 Mapping complex JSON responses requires careful testing.
 

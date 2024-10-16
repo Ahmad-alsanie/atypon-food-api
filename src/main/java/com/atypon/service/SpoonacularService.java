@@ -77,7 +77,7 @@ public class SpoonacularService {
         double sum = 0;
         for(Ingredient ingredient : recipe.getExtendedIngredients()){
             final String currentIngredient = ingredient.getName();
-            if(!excludeRequest.getExcludeIngredients().contains(currentIngredient)){
+            if(excludeRequest.getExcludeIngredients() == null || !excludeRequest.getExcludeIngredients().contains(currentIngredient)){
                sum += ingredient.getAmount();
             }
         }

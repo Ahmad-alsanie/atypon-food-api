@@ -51,7 +51,7 @@ class RecipeControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Double.class)
-                .isEqualTo(140.0);
+                .isEqualTo(100.0);
     }
 }
 

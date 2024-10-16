@@ -20,9 +20,15 @@ import java.util.List;
 public class SpoonacularService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SpoonacularService.class);
+
     private final RestTemplate restTemplate;
     private final SpoonacularConfig config;
 
+    /**
+     * @param query: represents the name of the recipe
+     * @param cuisine: cuisine type - optional parameter
+     * @return list of recipes matching passed parameter
+     * **/
     public List<Recipe> searchRecipes(String query, String cuisine) {
         String url = String.format("%s/recipes/complexSearch?query=%s&cuisine=%s&apiKey=%s",
                 config.getBaseUrl(), query, cuisine, config.getApiKey());
@@ -40,6 +46,10 @@ public class SpoonacularService {
         return recipes;
     }
 
+    /**
+     * @param recipeId: a unique identifier of the recipe
+     * @return a recipe matching passed recipeId
+     * **/
     public Recipe getRecipeInfo(int recipeId) {
         String url = String.format("%s/recipes/%d/information?apiKey=%s&includeNutrition=false",
                 config.getBaseUrl(), recipeId, config.getApiKey());
@@ -52,6 +62,11 @@ public class SpoonacularService {
         return response.getBody();
     }
 
+    /**
+     * @param recipeId: a unique identifier of the recipe
+     * @param excludeRequest: a list of ingredients to be excluded from calories calculation
+     * @return number of calories
+     * **/
     public double getCustomizedCalories(int recipeId, ExcludeRequest excludeRequest) {
         Recipe recipe = getRecipeInfo(recipeId);
 

@@ -6,6 +6,8 @@ import com.atypon.model.Ingredient;
 import com.atypon.model.Recipe;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SpoonacularService {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(SpoonacularService.class);
     private final RestTemplate restTemplate;
     private final SpoonacularConfig config;
 
@@ -24,7 +27,9 @@ public class SpoonacularService {
         String url = String.format("%s/recipes/complexSearch?query=%s&cuisine=%s&apiKey=%s",
                 config.getBaseUrl(), query, cuisine, config.getApiKey());
         ResponseEntity<JsonNode> response = restTemplate.getForEntity(url, JsonNode.class);
-
+        if(response.getBody()==null){
+            LOGGER.error("There are no results found for recipe {}", query);
+        }
         List<Recipe> recipes = new ArrayList<>();
         response.getBody().get("results").forEach(node -> {
             Recipe recipe = new Recipe();
@@ -41,6 +46,7 @@ public class SpoonacularService {
         ResponseEntity<Recipe> response = restTemplate.getForEntity(url, Recipe.class);
 
         if(response.getBody() == null){
+            LOGGER.error("Failed to fetch information for recipeId {}", recipeId);
             throw new IllegalStateException("Failed to fetch recipe information");
         }
         return response.getBody();
@@ -50,6 +56,7 @@ public class SpoonacularService {
         Recipe recipe = getRecipeInfo(recipeId);
 
         if (recipe == null) {
+            LOGGER.error("Recipe not found for recipeId {}", recipeId);
             throw new IllegalStateException("Recipe not found for ID: " + recipeId);
         }
         double sum = 0;
@@ -59,12 +66,6 @@ public class SpoonacularService {
                sum += ingredient.getAmount();
             }
         }
-
-        /*return recipe.getExtendedIngredients().stream()
-                .filter(ingredient -> !excludeRequest.getExcludeIngredients()
-                        .contains(ingredient.getName()))
-                .mapToDouble(ingredient -> ingredient.getNutrition().getCalories())
-                .sum();*/
         return sum;
     }
 

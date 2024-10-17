@@ -56,9 +56,9 @@ Navigate to [Swagger API documentation](http://localhost:8080) to view swagger d
 
 | API       | supported methods | onSuccess | onFailure |
 |-----------|-------------------|-----------|-----------|
-| /search   | GET               | 200       | 500       | 
+| /search   | GET               | 200       | 404       | 
 | /info     | GET               | 200       | 404       | 
-| /calories | POST              | 200       | 500       | 
+| /calories | POST              | 200       | 400       | 
 
 
 ### Architecture

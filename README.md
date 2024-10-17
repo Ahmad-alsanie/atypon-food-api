@@ -80,6 +80,7 @@ Key components of our service:
 - Spring Boot for rapid development features and simplifies the creation of stand-alone, production ready microservices with its autoconfigured components & IOC container.
 - API Client: RestTemplate (for calling Spoonacular APIs)
 - Tests: JUnit, Mockito for unit and integration tests >80% coverage
+- Tests: stress test
 - Docker for containerization allowing us to package and run our application in a loosely isolated environment
 
 ### Future Improvements

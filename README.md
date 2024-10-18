@@ -23,6 +23,13 @@ git clone https://github.com/Ahmad-alsanie/atypon-food-api.git
 cd atypon-food-api
 ```
 
+#### Tests
+```shell
+./mvnw clean test
+```
+
+![Jacoco](./jacoco.png)
+
 #### Without Docker
 #### Build & Run the Service
 ```shell

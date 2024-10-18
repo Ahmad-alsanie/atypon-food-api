@@ -69,7 +69,7 @@ class RecipeControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(excludeRequest)
                 .exchange()
-                .expectStatus().is5xxServerError();
+                .expectStatus().isBadRequest();
     }
 
     @Test

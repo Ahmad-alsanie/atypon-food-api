@@ -35,6 +35,7 @@ public class SpoonacularService {
         ResponseEntity<JsonNode> response = restTemplate.getForEntity(url, JsonNode.class);
         if(response.getBody()==null){
             LOGGER.error("There are no results found for recipe {}", query);
+            return List.of();
         }
         List<Recipe> recipes = new ArrayList<>();
         response.getBody().get("results").forEach(node -> {

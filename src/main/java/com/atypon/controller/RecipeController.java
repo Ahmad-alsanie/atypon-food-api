@@ -25,7 +25,12 @@ public class RecipeController {
 
     @GetMapping("/info")
     public ResponseEntity<?> getRecipeInfo(@RequestParam int id) {
-        return ResponseEntity.ok(spoonacularService.getRecipeInfo(id));
+        try{
+            return ResponseEntity.ok(spoonacularService.getRecipeInfo(id));
+        }catch (IllegalStateException e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
 
@@ -33,8 +38,12 @@ public class RecipeController {
     public ResponseEntity<?> getCustomCalories(
             @RequestParam int recipeId,
             @RequestBody ExcludeRequest excludeRequest) {
+        try {
+            return ResponseEntity.ok(spoonacularService.getCustomizedCalories(recipeId, excludeRequest));
+        }catch (IllegalStateException e){
+            return ResponseEntity.badRequest().build();
+        }
 
-        return ResponseEntity.ok(spoonacularService.getCustomizedCalories(recipeId, excludeRequest));
     }
 
 

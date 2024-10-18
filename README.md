@@ -54,11 +54,11 @@ docker run -p 8080:8080 -d ahmad/atypon-food-api
 ### API Documentation
 Navigate to [Swagger API documentation](http://localhost:8080) to view swagger documentation of our endpoints.
 
-| API       | supported methods | onSuccess | onFailure |
-|-----------|-------------------|-----------|-----------|
-| /search   | GET               | 200       | 404       | 
-| /info     | GET               | 200       | 404       | 
-| /calories | POST              | 200       | 400       | 
+| API       | supported methods | onSuccess | onFailure  |
+|-----------|-------------------|-----------|------------|
+| /search   | GET               | 200       | empty list | 
+| /info     | GET               | 200       | 404        | 
+| /calories | POST              | 202       | 400        | 
 
 
 ### Architecture
